@@ -2,67 +2,40 @@ document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
 var board = {
-  cells: [
-    // First Row
-    {
-      row: 0,
-      col: 0,
-      isMine: false,
-      hidden: true
-    },
-    {
-      row: 0,
-      col: 1,
-      isMine: false,
-      hidden: true
-    },
-    {
-      row: 0,
-      col: 2,
-      isMine: true,
-      hidden: true
-    },
-    //Second Row
-    {
-      row: 1,
-      col: 0,
-      isMine: true,
-      hidden: true
-    },
-    {
-      row: 1,
-      col: 1,
-      isMine: false,
-      hidden: true
-    },
-    {
-      row: 1,
-      col: 2,
-      isMine: false,
-      hidden: true
-    },
-    //Third Row
-    {
-      row: 2,
-      col: 0,
-      isMine: false,
-      hidden: true
-    },
-    {
-      row: 2,
-      col: 1,
-      isMine: true,
-      hidden: true
-    },
-    {
-      row: 2,
-      col: 2,
-      isMine: true,
-      hidden: true
-    }
-    
-  ]
+  cells: []
 }
+
+//Decides whether a cell is a mine or not
+function mineDecide() {
+  if (Math.random() < 0.4) {
+    return true
+  } else {
+    return false
+  }
+}
+
+//This function creates each cell
+function createCell(rowNum, colNum) {
+  var newCell = {
+    row: rowNum,
+    col: colNum,
+    isMine: mineDecide(),
+    isMarked: false,
+    hidden: true
+  }
+  return newCell
+}
+
+//Creates the board using previous two functions
+function createEasyBoard() {
+  for (var x = 0; x < 4; x++) {
+    for (var y = 0; y < 4; y++) {
+    board.cells.push(createCell(x, y))
+    }
+  }
+}
+
+createEasyBoard()
 
 function startGame () {
   // Don't remove this function call: it makes the game work!

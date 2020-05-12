@@ -1,5 +1,12 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
+
+var greetingAudio = new Audio('audio/welcome.mp3');
+
+var loseAudio = new Audio('audio/boom.mp3');
+
+var winAudio = new Audio('audio/win.mp3');
+
 // Define your `board` object here!
 var board = {
   cells: []
@@ -77,6 +84,7 @@ function startGame () {
   document.getElementById("medium").addEventListener('click', createMediumBoard)
   document.getElementById("hard").addEventListener('click', createHardBoard)
   lib.initBoard()
+  greetingAudio.play()
 }
 
 // Define this function to look for a win condition:
@@ -91,10 +99,12 @@ function checkForWin() {
       return;
     }
   }
+  winAudio.play()
   lib.displayMessage('Hell yeah chief! Bloody good on ya!');
   // You can use this function call to declare a winner (once you've
   // detected that they've won, that is!)
 }
+
 
 
 // Define this function to count the number of mines around the cell

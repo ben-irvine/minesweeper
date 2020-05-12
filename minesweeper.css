@@ -1,7 +1,9 @@
 html, body {
   height: 100%;
-  font-family: 'Open Sans', sans-serif
+  font-family: 'Open Sans', sans-serif;
+  background-color: coral;
 }
+
 
 body {
   display: flex;

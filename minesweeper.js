@@ -28,24 +28,55 @@ function createCell(rowNum, colNum) {
 
 //Creates the board using previous two functions
 function createEasyBoard() {
+  board = {
+    cells: []
+  }
   for (var x = 0; x < 4; x++) {
     for (var y = 0; y < 4; y++) {
     board.cells.push(createCell(x, y))
     }
   }
+  startGame()
+}
+
+function createMediumBoard() {
+  board = {
+    cells: []
+  }
+  for (var x = 0; x < 5; x++) {
+    for (var y = 0; y < 5; y++) {
+    board.cells.push(createCell(x, y))
+    }
+  }
+  startGame()
+}
+
+function createHardBoard() {
+  board = {
+    cells: []
+  }
+  for (var x = 0; x < 6; x++) {
+    for (var y = 0; y < 6; y++) {
+    board.cells.push(createCell(x, y))
+    }
+  }
+  startGame()
 }
 
 createEasyBoard()
 
 function startGame () {
+  document.getElementById("game").innerHTML = " "
   // Don't remove this function call: it makes the game work!
   for (var i = 0; i < board.cells.length; i++) {
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
   }
   document.addEventListener("click", checkForWin)
   document.addEventListener("contextmenu", checkForWin)
+  document.getElementById("easy").addEventListener('click', createEasyBoard)
+  document.getElementById("medium").addEventListener('click', createMediumBoard)
+  document.getElementById("hard").addEventListener('click', createHardBoard)
   lib.initBoard()
-
 }
 
 // Define this function to look for a win condition:
